@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <title>WiFi QR Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body style="margin: 0; padding: 0; background: linear-gradient(to right, #f0f2f5, #d9e2ec); min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Segoe UI', sans-serif;">
+<body style="margin: 0; padding: 0; background: linear-gradient(to right, #f0f2f5, #d9e2ec); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh;">
 
-  <div style="background-color: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
+  <div style="background-color: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 420px; box-sizing: border-box;">
 
-    <h1 style="text-align: center; color: #333; font-size: 24px; margin-bottom: 30px;">📶 WiFi QR Code Generator</h1>
+    <h1 style="text-align: center; color: #222; font-size: 26px; margin-bottom: 30px;">📶 WiFi QR Code Generator</h1>
 
-    <label for="ssid" style="display: block; font-weight: 600; margin-bottom: 6px; color: #555;">WiFi Name (SSID)</label>
-    <input type="text" id="ssid" placeholder="Enter SSID" 
-           style="box-sizing: border-box; width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px;">
+    <label for="ssid" style="display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px;">WiFi Name (SSID)</label>
+    <input type="text" id="ssid" placeholder="Enter SSID"
+           style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px; box-sizing: border-box;" />
 
-    <label for="encryption" style="display: block; font-weight: 600; margin-bottom: 6px; color: #555;">Encryption Type</label>
+    <label for="encryption" style="display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px;">Encryption Type</label>
     <select id="encryption"
-            style="box-sizing: border-box; width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px;">
+            style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px; box-sizing: border-box;">
       <option value="WPA">WPA/WPA2</option>
       <option value="WEP">WEP</option>
       <option value="nopass">None</option>
     </select>
 
-    <label for="password" style="display: block; font-weight: 600; margin-bottom: 6px; color: #555;">Password</label>
+    <label for="password" style="display: block; font-weight: 600; margin-bottom: 6px; color: #444; font-size: 14px;">Password</label>
     <input type="password" id="password" placeholder="Enter password"
-           style="box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px;">
+           style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 10px; font-size: 14px; box-sizing: border-box;" />
 
-    <div style="margin: 10px 0 30px; font-size: 14px; color: #555;">
+    <div style="margin: 10px 0 30px; font-size: 14px; color: #555; display: flex; align-items: center; gap: 8px;">
       <input type="checkbox" id="showPassword" onclick="togglePassword()" />
       <label for="showPassword" style="cursor: pointer;">Show Password</label>
     </div>
 
     <button onclick="generateQRCode()"
-            style="width: 100%; padding: 14px; background-color: #007bff; color: white; font-size: 16px; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; transition: background-color 0.3s ease;"
             onmouseover="this.style.backgroundColor='#0056b3'"
-            onmouseout="this.style.backgroundColor='#007bff'">
+            onmouseout="this.style.backgroundColor='#007bff'"
+            style="width: 100%; padding: 14px; background-color: #007bff; color: white; font-size: 16px; font-weight: bold; border: none; border-radius: 12px; cursor: pointer; transition: background-color 0.3s ease;">
       Generate QR Code
     </button>
 
@@ -46,7 +47,7 @@
 
   <script>
     function generateQRCode() {
-      const ssid = document.getElementById("ssid").value;
+      const ssid = document.getElementById("ssid").value.trim();
       const encryption = document.getElementById("encryption").value;
       const password = document.getElementById("password").value;
 
@@ -59,9 +60,9 @@
         text: wifiQR,
         width: 200,
         height: 200,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
       });
     }
 
